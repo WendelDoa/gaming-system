@@ -34,7 +34,7 @@ public class SistemaJogos {
     }
 
     public void adicionarJogoFavoritoDoUsuario(int idJogo, String matriculaUsuario)
-            throws jogoInexistenteException, jogoJaAdicionadoException {
+            throws jogoInexistenteException, jogoJaAtribuidoException {
         if (!jogos.containsKey(idJogo)) {
             throw new jogoInexistenteException("O id passado, não corresponde a nenhum jogo!");
         }
@@ -47,7 +47,7 @@ public class SistemaJogos {
         for (Usuario usuario : usuarios.values()) {
             if (usuario.getMatricula().equals(matriculaUsuario)) {
                 if (usuario.getJogosFavoritos().contains(jogoFavorito)) {
-                    throw new jogoJaAdicionadoException("O jogo já está cadastrado neste usuário");
+                    throw new jogoJaAtribuidoException("O jogo já está cadastrado neste usuário");
                 } else {
                     usuario.adicionarJogoFavorito(jogoFavorito);
                 }
@@ -74,6 +74,23 @@ public class SistemaJogos {
                     usuario.removerJogoFavorito(jogoFavorito);
                 }
             }
+        }
+    }
+
+    public void deletarUsuario(String matricula)
+            throws usuarioInexistenteException {
+        if(!usuarios.containsKey(matricula)) {
+            throw new usuarioInexistenteException("Usuário não encontrado!");
+        } else {
+           usuarios.remove(matricula);
+        }
+    }
+
+    public void deletarJogo(int idJogo) throws jogoInexistenteException {
+        if(!jogos.containsKey(idJogo)) {
+            throw new jogoInexistenteException("O id passado não corresponde a nenhum jogo!");
+        } else {
+            jogos.remove(idJogo);
         }
     }
 }
