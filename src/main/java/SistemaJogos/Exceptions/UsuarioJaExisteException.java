@@ -1,7 +1,7 @@
 package SistemaJogos.Exceptions;
 
-public class usuarioJaExisteException extends Exception {
-    public usuarioJaExisteException(String msg) {
+public class UsuarioJaExisteException extends Exception {
+    public UsuarioJaExisteException(String msg) {
         super(msg);
     }
 }

@@ -1,4 +1,4 @@
-package SistemaJogos;
+package SistemaJogos.Sistema;
 
 import java.util.Objects;
 

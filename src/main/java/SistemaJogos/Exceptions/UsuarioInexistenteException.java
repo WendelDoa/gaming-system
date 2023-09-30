@@ -1,7 +1,7 @@
 package SistemaJogos.Exceptions;
 
-public class usuarioInexistenteException extends Exception{
-    public usuarioInexistenteException(String msg) {
+public class UsuarioInexistenteException extends Exception{
+    public UsuarioInexistenteException(String msg) {
         super(msg);
     }
 }

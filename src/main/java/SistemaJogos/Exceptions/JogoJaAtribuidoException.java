@@ -1,7 +1,7 @@
 package SistemaJogos.Exceptions;
 
-public class jogoJaAdicionadoException extends Exception {
-    public jogoJaAdicionadoException(String msg) {
+public class JogoJaAtribuidoException extends Exception {
+    public JogoJaAtribuidoException(String msg) {
         super(msg);
     }
 }

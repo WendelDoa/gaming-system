@@ -1,7 +1,7 @@
 package SistemaJogos.Exceptions;
 
-public class jogoJaExisteException extends Exception {
-    public jogoJaExisteException(String msg) {
+public class JogoJaExisteException extends Exception {
+    public JogoJaExisteException(String msg) {
         super(msg);
     }
 }
