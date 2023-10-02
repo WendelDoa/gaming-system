@@ -10,16 +10,16 @@ import java.awt.event.ActionListener;
 public class VoltarController implements ActionListener {
 
     private SistemaJogos sistema;
-    private JFrame janelaPrincipalVoltar;
+    private JFrame janelaVoltar;
 
     public VoltarController(SistemaJogos sistema, JFrame janelaPrincipalVoltar) {
         this.sistema = sistema;
-        this.janelaPrincipalVoltar = janelaPrincipalVoltar;
+        this.janelaVoltar = janelaPrincipalVoltar;
     }
 
     public void actionPerformed(ActionEvent e) {
         SistemaGUI sistemaGUI = new SistemaGUI(sistema);
         sistemaGUI.setVisible(true);
-        janelaPrincipalVoltar.dispose();
+        janelaVoltar.dispose();
     }
 }

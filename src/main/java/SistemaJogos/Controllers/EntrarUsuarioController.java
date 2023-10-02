@@ -13,24 +13,24 @@ import java.awt.event.ActionListener;
 public class EntrarUsuarioController implements ActionListener {
 
     private SistemaJogos sistema;
-    private JFrame janelaPrincipalEntrar;
+    private JFrame janelaEntrar;
 
-    public EntrarUsuarioController(SistemaJogos sistema, JFrame janelaPrincipalEntrar) {
+    public EntrarUsuarioController(SistemaJogos sistema, JFrame janelaEntrar) {
         this.sistema = sistema;
-        this.janelaPrincipalEntrar = janelaPrincipalEntrar;
+        this.janelaEntrar = janelaEntrar;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
-            String matricula = ((EntrarGUI) janelaPrincipalEntrar).getMatricula();
+            String matricula = ((EntrarGUI) janelaEntrar).getMatricula();
             Usuario usuario = sistema.buscarUsuario(matricula);
-            JOptionPane.showMessageDialog(janelaPrincipalEntrar, "Seja bem vindo "+ usuario.getNome());
+            JOptionPane.showMessageDialog(janelaEntrar, "Seja bem vindo "+ usuario.getNome());
             HomeUsuarioGUI homeUsuarioGUI = new HomeUsuarioGUI(sistema, usuario);
             homeUsuarioGUI.setVisible(true);
-            janelaPrincipalEntrar.dispose();
+            janelaEntrar.dispose();
         } catch (UsuarioInexistenteException exception) {
-            JOptionPane.showMessageDialog(janelaPrincipalEntrar, exception.getMessage());
+            JOptionPane.showMessageDialog(janelaEntrar, exception.getMessage());
         }
     }
 }

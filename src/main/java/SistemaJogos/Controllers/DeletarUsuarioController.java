@@ -11,20 +11,20 @@ import java.awt.event.ActionListener;
 public class DeletarUsuarioController implements ActionListener {
 
     private SistemaJogos sistema;
-    private JFrame janelaPrincipalDeletarUsuario;
+    private JFrame janelaDeletarUsuario;
 
     public DeletarUsuarioController(SistemaJogos sistema, JFrame janelaPrincipalDeletarUsuario) {
         this.sistema = sistema;
-        this.janelaPrincipalDeletarUsuario = janelaPrincipalDeletarUsuario;
+        this.janelaDeletarUsuario = janelaPrincipalDeletarUsuario;
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         try {
             sistema.deletarUsuario(DeletarUsuarioGUI.getMatricula());
-            JOptionPane.showMessageDialog(janelaPrincipalDeletarUsuario,"Usuário deletado com sucesso!");
+            JOptionPane.showMessageDialog(janelaDeletarUsuario,"Usuário deletado com sucesso!");
         } catch (UsuarioInexistenteException e) {
-            JOptionPane.showMessageDialog(janelaPrincipalDeletarUsuario,"Usuário não encontrado!");
+            JOptionPane.showMessageDialog(janelaDeletarUsuario,"Usuário não encontrado!");
         }
     }
 }

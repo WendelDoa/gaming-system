@@ -15,11 +15,7 @@ public class SistemaJogos {
         this.usuarios = new HashMap<>();
     }
 
-    public void cadastrarJogo(int idContador, String nome, Genero genero, int ano, boolean ehGratuito)
-            throws JogoJaExisteException {
-        if (jogos.containsKey(idContador)) {
-            throw new JogoJaExisteException("Jogo já existe!");
-        }
+    public void cadastrarJogo(String nome, Genero genero, String ano, boolean ehGratuito) {
         Jogo jogo = new Jogo(idContador, nome, genero, ano, ehGratuito);
         jogos.put(idContador, jogo);
         idContador++;
@@ -113,4 +109,9 @@ public class SistemaJogos {
         }
         throw new UsuarioInexistenteException("Usuário não existe!");
     }
+
+    public Map<Integer, Jogo> buscaTodosOsJogos() {
+        return jogos;
+    }
+
 }

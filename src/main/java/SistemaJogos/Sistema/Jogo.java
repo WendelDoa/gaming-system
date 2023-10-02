@@ -7,15 +7,15 @@ public class Jogo {
     private int id;
     private String nome;
     private Genero genero;
-    private int ano;
-    private boolean ehPago;
+    private String ano;
+    private boolean ehGratuito;
 
-    public Jogo(int id, String nome, Genero genero, int ano, boolean ehPago) {
+    public Jogo(int id, String nome, Genero genero, String ano, boolean ehGratuito) {
         this.id = id;
         this.nome = nome;
         this.genero = genero;
         this.ano = ano;
-        this.ehPago = ehPago;
+        this.ehGratuito = ehGratuito;
     }
 
     public int getId() {
@@ -42,20 +42,20 @@ public class Jogo {
         this.genero = genero;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
-    public boolean isEhPago() {
-        return ehPago;
+    public boolean getEhGratuito() {
+        return ehGratuito;
     }
 
-    public void setEhPago(boolean ehPago) {
-        this.ehPago = ehPago;
+    public void setEhGratuito(boolean ehGratuito) {
+        this.ehGratuito = ehGratuito;
     }
 
     @Override
@@ -63,11 +63,11 @@ public class Jogo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Jogo jogo = (Jogo) o;
-        return ano == jogo.ano && ehPago == jogo.ehPago && Objects.equals(id, jogo.id) && Objects.equals(nome, jogo.nome) && genero == jogo.genero;
+        return ano == jogo.ano && ehGratuito == jogo.ehGratuito && Objects.equals(id, jogo.id) && Objects.equals(nome, jogo.nome) && genero == jogo.genero;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, genero, ano, ehPago);
+        return Objects.hash(id, nome, genero, ano, ehGratuito);
     }
 }

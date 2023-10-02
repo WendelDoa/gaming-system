@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class DeletarUsuarioGUI extends JFrame {
 
-    static JTextField matricula = new JTextField();
+    private static JTextField matricula = new JTextField();
     SistemaJogos sistema;
 
     public DeletarUsuarioGUI(SistemaJogos sistema) {
