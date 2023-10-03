@@ -85,7 +85,7 @@ public class SistemaJogos {
         }
     }
 
-    public Map<Integer, Jogo> deletarJogo(int idJogo) throws JogoInexistenteException {
+    public void deletarJogo(int idJogo) throws JogoInexistenteException {
         if(!jogos.containsKey(idJogo)) {
             throw new JogoInexistenteException("O id passado não corresponde a nenhum jogo!");
         } else {
@@ -96,10 +96,13 @@ public class SistemaJogos {
                     jogo.setId(jogo.getId()-1);
                 }
             }
+            Map<Integer, Jogo> jogosAtualizados = new HashMap<>();
+
+            //Para testes
             for (Jogo jogo : jogos.values()) {
-                System.out.println(jogo.toString());
+                jogosAtualizados.put(jogo.getId(), jogo);
             }
-            return jogos;
+            jogos = jogosAtualizados;
         }
     }
 
