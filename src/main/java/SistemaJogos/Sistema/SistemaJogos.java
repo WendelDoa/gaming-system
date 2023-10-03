@@ -45,7 +45,7 @@ public class SistemaJogos {
         }
         for (Usuario usuario : usuarios.values()) {
             if (usuario.getMatricula().equals(matriculaUsuario)) {
-                if (usuario.getJogosFavoritos().contains(jogoFavorito)) {
+                if (usuario.getJogosFavoritos().containsValue(jogoFavorito)) {
                     throw new JogoJaAtribuidoException("O jogo já está cadastrado neste usuário");
                 } else {
                     usuario.adicionarJogoFavorito(jogoFavorito);
@@ -67,7 +67,7 @@ public class SistemaJogos {
         }
         for (Usuario usuario : usuarios.values()) {
             if (usuario.getMatricula().equals(matriculaUsuario)) {
-                if(!usuario.getJogosFavoritos().contains(jogoFavorito)) {
+                if(!usuario.getJogosFavoritos().containsValue(jogoFavorito)) {
                     throw new JogoNaoAtribuidoException("O jogo não está atribuido ao usuário!");
                 } else {
                     usuario.removerJogoFavorito(jogoFavorito);
@@ -106,8 +106,8 @@ public class SistemaJogos {
         }
     }
 
-    public Collection<Jogo> meusJogosFavoritos(String matricula) {
-        Collection<Jogo> jogosFavoritos = new ArrayList<>();
+    public Map<Integer, Jogo> meusJogosFavoritos(String matricula) {
+        Map<Integer, Jogo> jogosFavoritos = new HashMap<>();
         for(Usuario usuario : usuarios.values()) {
             if(usuario.getMatricula().equals(matricula)) {
                 jogosFavoritos = usuario.getJogosFavoritos();
@@ -124,11 +124,7 @@ public class SistemaJogos {
         throw new UsuarioInexistenteException("Usuário não existe!");
     }
 
-    public void atualizarLista(Map<Integer, Jogo> listaAtualizada) {
-        jogos = listaAtualizada;
-    }
     public Map<Integer, Jogo> buscaTodosOsJogos() {
         return jogos;
     }
-
 }

@@ -34,6 +34,7 @@ public class SistemaGUI extends JFrame {
         addButton("Deletar usuário", e -> deletarUsuario());
         addButton("Cadastrar jogo", e -> cadastrarJogo());
         addButton("Deletar jogo", e -> deletarJogo());
+        addButton("Salvar e sair", e -> salvarESair());
     }
 
     private void addButton(String label, ActionListener actionListener) {
@@ -70,5 +71,8 @@ public class SistemaGUI extends JFrame {
         DeletarJogoGUI deletarJogoGUI = new DeletarJogoGUI(sistema);
         deletarJogoGUI.setVisible(true);
         dispose();
+    }
+
+    private void salvarESair() {
     }
 }

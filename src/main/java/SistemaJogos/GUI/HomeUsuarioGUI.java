@@ -10,13 +10,13 @@ import java.awt.*;
 public class HomeUsuarioGUI extends JFrame {
     ImageIcon heartImg = new ImageIcon("./src/images/heart.png");
     ImageIcon gamepadImg = new ImageIcon("./src/images/gamepad.png");
-    Usuario usuario;
+    String matricula;
     SistemaJogos sistema;
     JMenuBar barraDeMenu = new JMenuBar();
 
-    public HomeUsuarioGUI(SistemaJogos sistema, Usuario usuario) {
+    public HomeUsuarioGUI(SistemaJogos sistema, String matricula) {
         this.sistema = sistema;
-        this.usuario = usuario;
+        this.matricula = matricula;
         setTitle("Pagina Principal");
         setSize(600,600);
         setLocationRelativeTo(null);
@@ -25,7 +25,10 @@ public class HomeUsuarioGUI extends JFrame {
 
         JButton botaoMeusJogos = new JButton("Meus jogos");
         JLabel labelHeart = new JLabel(heartImg, JLabel.CENTER);
-        botaoMeusJogos.addActionListener(new SistemaMeusJogosController(sistema, this));
+        botaoMeusJogos.addActionListener((ae) -> {
+            TabelaMeusJogosGUI tabelaMeusJogosGUI = new TabelaMeusJogosGUI(sistema, matricula);
+            tabelaMeusJogosGUI.setVisible(true);
+        });
 
         JLabel labelGamepad = new JLabel(gamepadImg, JLabel.CENTER);
         JButton botaoJogos = new JButton("Jogos");

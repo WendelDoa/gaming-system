@@ -1,15 +1,13 @@
 package SistemaJogos.Sistema;
 
-import SistemaJogos.Sistema.Jogo;
-
 import javax.swing.table.AbstractTableModel;
 
-public class ModeloTabela extends AbstractTableModel {
+public class ModeloTabelaTodosOsJogos extends AbstractTableModel {
 
     String[] colunas = {"Id", "Nome", "Gênero", "Ano", "Gratuito"};
     SistemaJogos sistema;
 
-    public ModeloTabela(SistemaJogos sistema) {
+    public ModeloTabelaTodosOsJogos(SistemaJogos sistema) {
         this.sistema = sistema;
     }
 
