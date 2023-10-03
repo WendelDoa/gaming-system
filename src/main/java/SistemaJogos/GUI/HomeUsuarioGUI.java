@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomeUsuarioGUI extends JFrame {
-    //ImageIcon boloImg = new ImageIcon("");
     ImageIcon heartImg = new ImageIcon("./src/images/heart.png");
     ImageIcon gamepadImg = new ImageIcon("./src/images/gamepad.png");
     Usuario usuario;
@@ -34,23 +33,40 @@ public class HomeUsuarioGUI extends JFrame {
                     TabelaDeJogosGUI tabelaDeJogosGUI = new TabelaDeJogosGUI(sistema);
                     tabelaDeJogosGUI.setVisible(true);
         });
+
         JMenu menuPerfil = new JMenu("Perfil");
         JMenuItem menuAdicionarJogoFavorito = new JMenuItem("Adicionar jogo favorito");
         menuPerfil.add(menuAdicionarJogoFavorito);
         menuAdicionarJogoFavorito.addActionListener((ae) -> {
+            int idAdicionar = Integer.parseInt((JOptionPane.showInputDialog(this,"Qual é o id do jogo?")));
         });
-        JMenuItem menuRemoverJogoFavorito = new JMenu("Remover jogo favorito");
+        JMenuItem menuRemoverJogoFavorito = new JMenuItem("Remover jogo favorito");
         menuPerfil.add(menuRemoverJogoFavorito);
         menuRemoverJogoFavorito.addActionListener((ae) -> {
-            int id = Integer.parseInt((JOptionPane.showInputDialog(this,"Qual é o id do jogo?")));
+            int idRemover = Integer.parseInt((JOptionPane.showInputDialog(this,"Qual é o id do jogo?")));
         });
-        JMenu menuInformacaoes = new JMenu("Informações");
-        menuInformacaoes.addActionListener((ae) -> {
+
+        JMenu menuInformacoes = new JMenu("Informações");
+        JMenuItem menuConta = new JMenuItem("Conta");
+        menuInformacoes.add(menuConta);
+        menuConta.addActionListener((ae) -> {
             JOptionPane.showMessageDialog(this, "Nome: Matricula:");
         });
-        JMenu menuSair = new JMenu("Sair");
-        menuSair.addActionListener((ae) -> {
-            JOptionPane.showMessageDialog(this, "Usuário deslogado!");
+        JMenuItem menuSobre = new JMenuItem("Sobre");
+        menuInformacoes.add(menuSobre);
+        menuSobre.addActionListener((ae) -> {
+            JOptionPane.showMessageDialog(this, "Sobre o projeto...");
+        });
+
+        JMenuItem menuSairBotao = new JMenuItem("Sair");
+        menuSairBotao.setMaximumSize(new Dimension(35,50));
+        menuSairBotao.addActionListener((ae) -> {
+            int cond = JOptionPane.showConfirmDialog(null,"Tem certeza?", "Sair", JOptionPane.YES_NO_OPTION);
+            if (cond == JOptionPane.YES_OPTION) {
+                SistemaGUI sistemaGUI = new SistemaGUI(sistema);
+                sistemaGUI.setVisible(true);
+                dispose();
+            }
         });
 
         getContentPane().setLayout(new GridLayout(2,1));
@@ -61,8 +77,8 @@ public class HomeUsuarioGUI extends JFrame {
 
 
         barraDeMenu.add(menuPerfil);
-        barraDeMenu.add(menuInformacaoes);
-        barraDeMenu.add(menuSair);
+        barraDeMenu.add(menuInformacoes);
+        barraDeMenu.add(menuSairBotao);
         setJMenuBar(barraDeMenu);
     }
 

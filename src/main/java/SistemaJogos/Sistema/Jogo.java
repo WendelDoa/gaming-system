@@ -70,4 +70,15 @@ public class Jogo {
     public int hashCode() {
         return Objects.hash(id, nome, genero, ano, ehGratuito);
     }
+
+    @Override
+    public String toString() {
+        return "Jogo{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", genero=" + genero +
+                ", ano='" + ano + '\'' +
+                ", ehGratuito=" + ehGratuito +
+                '}';
+    }
 }

@@ -33,6 +33,7 @@ public class SistemaGUI extends JFrame {
         addButton("Cadastrar Usuário", e -> cadastrarUsuario());
         addButton("Deletar usuário", e -> deletarUsuario());
         addButton("Cadastrar jogo", e -> cadastrarJogo());
+        addButton("Deletar jogo", e -> deletarJogo());
     }
 
     private void addButton(String label, ActionListener actionListener) {
@@ -53,15 +54,21 @@ public class SistemaGUI extends JFrame {
         dispose();
     }
 
-    public void deletarUsuario() {
+    private void deletarUsuario() {
         DeletarUsuarioGUI deletarUsuarioGUI = new DeletarUsuarioGUI(sistema);
         deletarUsuarioGUI.setVisible(true);
         dispose();
     }
 
-    public void cadastrarJogo() {
+    private void cadastrarJogo() {
         CadastrarJogoGUI cadastrarJogoGUI = new CadastrarJogoGUI(sistema);
         cadastrarJogoGUI.setVisible(true);
+        dispose();
+    }
+
+    private void deletarJogo() {
+        DeletarJogoGUI deletarJogoGUI = new DeletarJogoGUI(sistema);
+        deletarJogoGUI.setVisible(true);
         dispose();
     }
 }

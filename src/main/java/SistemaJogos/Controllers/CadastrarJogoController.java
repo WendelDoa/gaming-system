@@ -23,7 +23,6 @@ public class CadastrarJogoController implements ActionListener {
         String ano = ((CadastrarJogoGUI) janelaCadastrarJogo).getAno();
         Genero genero = (CadastrarJogoGUI.getGenero());
         boolean ehGratuito = (CadastrarJogoGUI.getEhPago());
-        System.out.println(ehGratuito);
         sistema.cadastrarJogo(nome, genero, ano, ehGratuito);
         JOptionPane.showMessageDialog(janelaCadastrarJogo,"Jogo cadastrado com sucesso, visite a lista de jogos!");
     }

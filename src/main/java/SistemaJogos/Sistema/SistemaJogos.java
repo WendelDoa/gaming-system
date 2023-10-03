@@ -2,6 +2,7 @@ package SistemaJogos.Sistema;
 
 import SistemaJogos.Exceptions.*;
 
+import javax.swing.*;
 import java.util.*;
 
 public class SistemaJogos {
@@ -84,11 +85,21 @@ public class SistemaJogos {
         }
     }
 
-    public void deletarJogo(int idJogo) throws JogoInexistenteException {
+    public Map<Integer, Jogo> deletarJogo(int idJogo) throws JogoInexistenteException {
         if(!jogos.containsKey(idJogo)) {
             throw new JogoInexistenteException("O id passado não corresponde a nenhum jogo!");
         } else {
             jogos.remove(idJogo);
+            idContador--;
+            for (Jogo jogo : jogos.values()) {
+                if(jogo.getId() > idJogo) {
+                    jogo.setId(jogo.getId()-1);
+                }
+            }
+            for (Jogo jogo : jogos.values()) {
+                System.out.println(jogo.toString());
+            }
+            return jogos;
         }
     }
 
@@ -110,6 +121,9 @@ public class SistemaJogos {
         throw new UsuarioInexistenteException("Usuário não existe!");
     }
 
+    public void atualizarLista(Map<Integer, Jogo> listaAtualizada) {
+        jogos = listaAtualizada;
+    }
     public Map<Integer, Jogo> buscaTodosOsJogos() {
         return jogos;
     }
