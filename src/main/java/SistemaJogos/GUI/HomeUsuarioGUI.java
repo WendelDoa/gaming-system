@@ -1,6 +1,8 @@
 package SistemaJogos.GUI;
 
 import SistemaJogos.Controllers.*;
+import SistemaJogos.Exceptions.JogoInexistenteException;
+import SistemaJogos.Exceptions.JogoJaAtribuidoException;
 import SistemaJogos.Sistema.SistemaJogos;
 import SistemaJogos.Sistema.Usuario;
 
@@ -42,6 +44,14 @@ public class HomeUsuarioGUI extends JFrame {
         menuPerfil.add(menuAdicionarJogoFavorito);
         menuAdicionarJogoFavorito.addActionListener((ae) -> {
             int idAdicionar = Integer.parseInt((JOptionPane.showInputDialog(this,"Qual é o id do jogo?")));
+            try {
+                sistema.adicionarJogoFavoritoDoUsuario(idAdicionar, matricula);
+            } catch (JogoJaAtribuidoException e) {
+                JOptionPane.showMessageDialog(this,"Jogo já favoritado!");
+            } catch (JogoInexistenteException e) {
+                JOptionPane.showMessageDialog(this,"Id inválido");
+            }
+
         });
         JMenuItem menuRemoverJogoFavorito = new JMenuItem("Remover jogo favorito");
         menuPerfil.add(menuRemoverJogoFavorito);

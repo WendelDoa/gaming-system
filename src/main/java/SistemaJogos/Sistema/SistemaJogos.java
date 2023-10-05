@@ -110,7 +110,9 @@ public class SistemaJogos {
         Map<Integer, Jogo> jogosFavoritos = new HashMap<>();
         for(Usuario usuario : usuarios.values()) {
             if(usuario.getMatricula().equals(matricula)) {
-                jogosFavoritos = usuario.getJogosFavoritos();
+                for(Jogo jogo : usuario.getJogosFavoritos().values()){
+                    jogosFavoritos.put(jogo.getId(), jogo);
+                }
             }
         }
         return jogosFavoritos;

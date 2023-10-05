@@ -1,6 +1,8 @@
 package SistemaJogos.Sistema;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModeloTabelaMeusJogos extends AbstractTableModel {
 
@@ -30,7 +32,9 @@ public class ModeloTabelaMeusJogos extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Jogo jogo = sistema.meusJogosFavoritos(matricula).get(rowIndex + 1); // IDs começam em 1
+        List<Jogo> listJogos = new ArrayList<>(sistema.meusJogosFavoritos(matricula).values());
+        Jogo jogo = listJogos.get(rowIndex);
+
 
         return switch (columnIndex) {
             case 0 -> jogo.getId();
