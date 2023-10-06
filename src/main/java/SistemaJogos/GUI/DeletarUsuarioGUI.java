@@ -2,6 +2,7 @@ package SistemaJogos.GUI;
 
 import SistemaJogos.Controllers.DeletarUsuarioController;
 import SistemaJogos.Controllers.VoltarController;
+import SistemaJogos.Sistema.ConfirmacaoSaidaWindowAdapter;
 import SistemaJogos.Sistema.SistemaJogos;
 
 import javax.swing.*;
@@ -33,6 +34,8 @@ public class DeletarUsuarioGUI extends JFrame {
         panel.add(voltar);
         add(panel);
         setVisible(true);
+        addWindowListener(new ConfirmacaoSaidaWindowAdapter());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     public static String getMatricula() {

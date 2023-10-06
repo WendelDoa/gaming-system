@@ -24,9 +24,9 @@ public class EntrarUsuarioController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try{
             String matricula = ((EntrarGUI) janelaEntrar).getMatricula();
-            Usuario usuario = sistema.buscarUsuario(matricula);
-            JOptionPane.showMessageDialog(janelaEntrar, "Seja bem vindo "+ usuario.getNome());
-            HomeUsuarioGUI homeUsuarioGUI = new HomeUsuarioGUI(sistema, matricula);
+            String usuarioNome = sistema.buscarUsuario(matricula).getNome();
+            JOptionPane.showMessageDialog(janelaEntrar, "Seja bem vindo "+ usuarioNome);
+            HomeUsuarioGUI homeUsuarioGUI = new HomeUsuarioGUI(sistema, matricula, usuarioNome);
             homeUsuarioGUI.setVisible(true);
             janelaEntrar.dispose();
         } catch (UsuarioInexistenteException exception) {

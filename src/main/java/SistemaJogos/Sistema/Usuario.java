@@ -1,9 +1,6 @@
 package SistemaJogos.Sistema;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Usuario {
 
@@ -14,7 +11,7 @@ public class Usuario {
     public Usuario(String nome, String matricula) {
         this.nome = nome;
         this.matricula = matricula;
-        this.jogosFavoritos = new HashMap<>();
+        this.jogosFavoritos = new LinkedHashMap<>();//Linked mantém a ordem de inserção do Map
     }
 
     public String getNome() {

@@ -2,18 +2,19 @@ package SistemaJogos.GUI;
 
 import SistemaJogos.Controllers.CadastrarUsuarioController;
 import SistemaJogos.Controllers.VoltarController;
+import SistemaJogos.Sistema.ConfirmacaoSaidaWindowAdapter;
 import SistemaJogos.Sistema.SistemaJogos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class CadastrarGUI extends JFrame {
+public class CadastrarUsuarioGUI extends JFrame {
 
     JTextField matricula = new JTextField();
     JTextField nome = new JTextField();
     SistemaJogos sistema;
 
-    public CadastrarGUI(SistemaJogos sistema) {
+    public CadastrarUsuarioGUI(SistemaJogos sistema) {
         this.sistema = sistema;
         setTitle("Cadastrar Usuário");
         setSize(300, 300);
@@ -38,6 +39,8 @@ public class CadastrarGUI extends JFrame {
         panel.add(voltar);
         add(panel);
         setVisible(true);
+        addWindowListener(new ConfirmacaoSaidaWindowAdapter());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     public String getNome() {

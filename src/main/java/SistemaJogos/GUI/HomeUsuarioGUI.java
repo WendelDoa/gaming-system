@@ -3,6 +3,9 @@ package SistemaJogos.GUI;
 import SistemaJogos.Controllers.*;
 import SistemaJogos.Exceptions.JogoInexistenteException;
 import SistemaJogos.Exceptions.JogoJaAtribuidoException;
+import SistemaJogos.Exceptions.JogoNaoAtribuidoException;
+import SistemaJogos.Sistema.ConfirmacaoSaidaWindowAdapter;
+import SistemaJogos.Sistema.Jogo;
 import SistemaJogos.Sistema.SistemaJogos;
 import SistemaJogos.Sistema.Usuario;
 
@@ -13,12 +16,14 @@ public class HomeUsuarioGUI extends JFrame {
     ImageIcon heartImg = new ImageIcon("./src/images/heart.png");
     ImageIcon gamepadImg = new ImageIcon("./src/images/gamepad.png");
     String matricula;
+    String usuarioNome;
     SistemaJogos sistema;
     JMenuBar barraDeMenu = new JMenuBar();
 
-    public HomeUsuarioGUI(SistemaJogos sistema, String matricula) {
+    public HomeUsuarioGUI(SistemaJogos sistema, String matricula, String usuarioNome) {
         this.sistema = sistema;
         this.matricula = matricula;
+        this.usuarioNome = usuarioNome;
         setTitle("Pagina Principal");
         setSize(600,600);
         setLocationRelativeTo(null);
@@ -46,10 +51,11 @@ public class HomeUsuarioGUI extends JFrame {
             int idAdicionar = Integer.parseInt((JOptionPane.showInputDialog(this,"Qual é o id do jogo?")));
             try {
                 sistema.adicionarJogoFavoritoDoUsuario(idAdicionar, matricula);
+                JOptionPane.showMessageDialog(this,"Jogo " + sistema.buscarJogo(idAdicionar).getNome() + " adicionado com sucesso!");
             } catch (JogoJaAtribuidoException e) {
-                JOptionPane.showMessageDialog(this,"Jogo já favoritado!");
+                JOptionPane.showMessageDialog(this,"Jogo já está nos favoritos!");
             } catch (JogoInexistenteException e) {
-                JOptionPane.showMessageDialog(this,"Id inválido");
+                JOptionPane.showMessageDialog(this,"Nenhum jogo corresponde ao id digitado!");
             }
 
         });
@@ -57,18 +63,27 @@ public class HomeUsuarioGUI extends JFrame {
         menuPerfil.add(menuRemoverJogoFavorito);
         menuRemoverJogoFavorito.addActionListener((ae) -> {
             int idRemover = Integer.parseInt((JOptionPane.showInputDialog(this,"Qual é o id do jogo?")));
+            try {
+                sistema.removerJogoFavoritoDoUsuario(idRemover, matricula);
+                JOptionPane.showMessageDialog(this,"Jogo " + sistema.buscarJogo(idRemover).getNome() + " removido com sucesso!");
+
+            } catch (JogoNaoAtribuidoException e) {
+                JOptionPane.showMessageDialog(this, "Jogo não está atribuído ao usuário!");
+            } catch (JogoInexistenteException e) {
+                JOptionPane.showMessageDialog(this,"Nenhum jogo corresponde ao id digitado!");
+            }
         });
 
         JMenu menuInformacoes = new JMenu("Informações");
         JMenuItem menuConta = new JMenuItem("Conta");
         menuInformacoes.add(menuConta);
         menuConta.addActionListener((ae) -> {
-            JOptionPane.showMessageDialog(this, "Nome: Matricula:");
+            JOptionPane.showMessageDialog(this, "Nome: " + usuarioNome + "\nMatricula: " + matricula);
         });
         JMenuItem menuSobre = new JMenuItem("Sobre");
         menuInformacoes.add(menuSobre);
         menuSobre.addActionListener((ae) -> {
-            JOptionPane.showMessageDialog(this, "Sobre o projeto...");
+            JOptionPane.showMessageDialog(this, "Projeto criado por:\nWendel Soares Sampaio\nCiências da computação - POO\nUFPB - Rio Tinto\n 2023");
         });
 
         JMenuItem menuSairBotao = new JMenuItem("Sair");
@@ -93,6 +108,9 @@ public class HomeUsuarioGUI extends JFrame {
         barraDeMenu.add(menuInformacoes);
         barraDeMenu.add(menuSairBotao);
         setJMenuBar(barraDeMenu);
+
+        addWindowListener(new ConfirmacaoSaidaWindowAdapter());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
 }

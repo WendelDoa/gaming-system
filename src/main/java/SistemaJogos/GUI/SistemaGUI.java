@@ -1,5 +1,6 @@
 package SistemaJogos.GUI;
 
+import SistemaJogos.Sistema.ConfirmacaoSaidaWindowAdapter;
 import SistemaJogos.Sistema.SistemaJogos;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ public class SistemaGUI extends JFrame {
 
     private SistemaJogos sistema;
     private static boolean mensagemInicial = false;
+    JFrame janelaSistemaGUI = new JFrame();
 
     public SistemaGUI(SistemaJogos sistema) {
         this.sistema = sistema;
@@ -35,6 +37,9 @@ public class SistemaGUI extends JFrame {
         addButton("Cadastrar jogo", e -> cadastrarJogo());
         addButton("Deletar jogo", e -> deletarJogo());
         addButton("Salvar e sair", e -> salvarESair());
+
+        addWindowListener(new ConfirmacaoSaidaWindowAdapter());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     private void addButton(String label, ActionListener actionListener) {
@@ -50,7 +55,7 @@ public class SistemaGUI extends JFrame {
     }
 
     private void cadastrarUsuario() {
-        CadastrarGUI cadastrarGUI = new CadastrarGUI(sistema);
+        CadastrarUsuarioGUI cadastrarGUI = new CadastrarUsuarioGUI(sistema);
         cadastrarGUI.setVisible(true);
         dispose();
     }

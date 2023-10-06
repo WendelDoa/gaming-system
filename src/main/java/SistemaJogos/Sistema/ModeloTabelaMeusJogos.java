@@ -2,7 +2,9 @@ package SistemaJogos.Sistema;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ModeloTabelaMeusJogos extends AbstractTableModel {
 
@@ -32,8 +34,8 @@ public class ModeloTabelaMeusJogos extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        List<Jogo> listJogos = new ArrayList<>(sistema.meusJogosFavoritos(matricula).values());
-        Jogo jogo = listJogos.get(rowIndex);
+        List<Jogo> jogosFavoritos = new ArrayList<>(sistema.meusJogosFavoritos(matricula).values());
+        Jogo jogo = jogosFavoritos.get(rowIndex);
 
 
         return switch (columnIndex) {

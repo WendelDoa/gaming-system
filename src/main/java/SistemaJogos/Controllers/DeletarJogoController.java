@@ -24,8 +24,9 @@ public class DeletarJogoController implements ActionListener {
         try {
             String idJogo = (DeletarJogoGUI.getIdJogo());
             int idJogoNumero = Integer.parseInt(idJogo);
+            String jogoNome = sistema.buscarJogo(idJogoNumero).getNome();
             sistema.deletarJogo(idJogoNumero);
-            JOptionPane.showMessageDialog(janelaDeletarJogo, "Jogo deletado com sucesso!");
+            JOptionPane.showMessageDialog(janelaDeletarJogo, "Jogo "+ jogoNome + " deletado com sucesso!");
         } catch (JogoInexistenteException exception) {
             JOptionPane.showMessageDialog(janelaDeletarJogo, exception.getMessage());
         }

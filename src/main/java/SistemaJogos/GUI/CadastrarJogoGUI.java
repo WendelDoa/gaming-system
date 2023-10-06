@@ -2,6 +2,7 @@ package SistemaJogos.GUI;
 
 import SistemaJogos.Controllers.CadastrarJogoController;
 import SistemaJogos.Controllers.VoltarController;
+import SistemaJogos.Sistema.ConfirmacaoSaidaWindowAdapter;
 import SistemaJogos.Sistema.Genero;
 import SistemaJogos.Sistema.SistemaJogos;
 
@@ -100,6 +101,8 @@ public class CadastrarJogoGUI extends JFrame {
 
         getContentPane().add(panel);
         getContentPane().setVisible(true);
+        addWindowListener(new ConfirmacaoSaidaWindowAdapter());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     public static String getNome() {

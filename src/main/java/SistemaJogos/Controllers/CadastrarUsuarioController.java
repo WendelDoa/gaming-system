@@ -1,7 +1,7 @@
 package SistemaJogos.Controllers;
 
 import SistemaJogos.Exceptions.UsuarioJaExisteException;
-import SistemaJogos.GUI.CadastrarGUI;
+import SistemaJogos.GUI.CadastrarUsuarioGUI;
 import SistemaJogos.Sistema.SistemaJogos;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,10 +20,10 @@ public class CadastrarUsuarioController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         try {
-            String nome = ((CadastrarGUI) janelaCadastrarUsuario).getNome();
-            String matricula = ((CadastrarGUI) janelaCadastrarUsuario).getMatricula();
+            String nome = ((CadastrarUsuarioGUI) janelaCadastrarUsuario).getNome();
+            String matricula = ((CadastrarUsuarioGUI) janelaCadastrarUsuario).getMatricula();
             sistema.cadastrarUsuario(nome, matricula);
-            JOptionPane.showMessageDialog(janelaCadastrarUsuario, "Usuário de nome: "+nome+" e matricula: "+matricula+" castrado com sucesso!");
+            JOptionPane.showMessageDialog(janelaCadastrarUsuario, "Cadastro concluído!\nUsuário: " + nome + "\nMatricula: " + matricula);
         } catch (UsuarioJaExisteException exception) {
             JOptionPane.showMessageDialog(janelaCadastrarUsuario, exception.getMessage());
         }

@@ -35,7 +35,7 @@ public class SistemaJogos {
     public void adicionarJogoFavoritoDoUsuario(int idJogo, String matriculaUsuario)
             throws JogoInexistenteException, JogoJaAtribuidoException {
         if (!jogos.containsKey(idJogo)) {
-            throw new JogoInexistenteException("O id passado, não corresponde a nenhum jogo!");
+            throw new JogoInexistenteException("Nenhum jogo corresponde ao id digitado!");
         }
         Jogo jogoFavorito = null;
         for (Jogo jogo : jogos.values()) {
@@ -57,7 +57,7 @@ public class SistemaJogos {
     public void removerJogoFavoritoDoUsuario(int idJogo, String matriculaUsuario)
             throws JogoInexistenteException, JogoNaoAtribuidoException {
         if (!jogos.containsKey(idJogo)) {
-            throw new JogoInexistenteException("O id passado, não corresponde a nenhum jogo!");
+            throw new JogoInexistenteException("Nenhum jogo corresponde ao id digitado!");
         }
         Jogo jogoFavorito = null;
         for (Jogo jogo : jogos.values()) {
@@ -87,7 +87,7 @@ public class SistemaJogos {
 
     public void deletarJogo(int idJogo) throws JogoInexistenteException {
         if(!jogos.containsKey(idJogo)) {
-            throw new JogoInexistenteException("O id passado não corresponde a nenhum jogo!");
+            throw new JogoInexistenteException("Nenhum jogo corresponde ao id digitado!");
         } else {
             jogos.remove(idJogo);
             idContador--;
@@ -103,19 +103,20 @@ public class SistemaJogos {
                 jogosAtualizados.put(jogo.getId(), jogo);
             }
             jogos = jogosAtualizados;
+
+            for(Usuario usuario : this.usuarios.values()) {
+                usuario.getJogosFavoritos().remove(idJogo);
+            }
         }
     }
 
     public Map<Integer, Jogo> meusJogosFavoritos(String matricula) {
-        Map<Integer, Jogo> jogosFavoritos = new HashMap<>();
         for(Usuario usuario : usuarios.values()) {
             if(usuario.getMatricula().equals(matricula)) {
-                for(Jogo jogo : usuario.getJogosFavoritos().values()){
-                    jogosFavoritos.put(jogo.getId(), jogo);
-                }
+                return usuario.getJogosFavoritos();
             }
         }
-        return jogosFavoritos;
+        return null;
     }
 
     public Usuario buscarUsuario(String matricula) throws UsuarioInexistenteException {
@@ -123,10 +124,18 @@ public class SistemaJogos {
             if(usuario.getMatricula().equals(matricula))
                 return usuario;
         }
-        throw new UsuarioInexistenteException("Usuário não existe!");
+        throw new UsuarioInexistenteException("Usuário não encontrado!");
     }
 
     public Map<Integer, Jogo> buscaTodosOsJogos() {
         return jogos;
+    }
+
+    public Jogo buscarJogo(int idJogo) throws JogoInexistenteException {
+        if(jogos.get(idJogo) != null) {
+            return jogos.get(idJogo);
+        } else {
+            throw new JogoInexistenteException("Nenhum jogo corresponde ao id digitado!");
+        }
     }
 }
