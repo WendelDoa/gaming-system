@@ -79,5 +79,7 @@ public class SistemaGUI extends JFrame {
     }
 
     private void salvarESair() {
+        sistema.salvarDados();
+        System.exit(0);
     }
 }

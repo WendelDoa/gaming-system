@@ -1,8 +1,9 @@
 package SistemaJogos.Sistema;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Usuario {
+public class Usuario implements Serializable {//Torna o objeto serializável, para salvar...
 
     private String nome;
     private String matricula;

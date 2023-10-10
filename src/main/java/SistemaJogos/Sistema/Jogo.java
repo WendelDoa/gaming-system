@@ -1,8 +1,9 @@
 package SistemaJogos.Sistema;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Jogo {
+public class Jogo implements Serializable {//Torna o objeto serializável, para salvar...
 
     private int id;
     private String nome;

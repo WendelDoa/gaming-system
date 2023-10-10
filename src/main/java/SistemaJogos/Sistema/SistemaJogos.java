@@ -1,8 +1,10 @@
 package SistemaJogos.Sistema;
 
 import SistemaJogos.Exceptions.*;
+import SistemaJogos.Persistencia.GravadorDeDados;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.*;
 
 public class SistemaJogos {
@@ -10,12 +12,31 @@ public class SistemaJogos {
     private Map<Integer, Jogo> jogos;
     private Map<String, Usuario> usuarios;
     private int idContador = 1;
+    private GravadorDeDados gravador = new GravadorDeDados();
 
     public SistemaJogos() {
         this.jogos = new HashMap<>();
         this.usuarios = new HashMap<>();
+        recuperaDados();
     }
 
+    public void recuperaDados() {
+        try {
+            this.usuarios = this.gravador.recuperarUsuarios();
+            this.jogos = this.gravador.recuperarJogos();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void salvarDados() {
+        try {
+            this.gravador.salvarUsuarios(this.usuarios);
+            this.gravador.salvarJogos(this.jogos);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
     public void cadastrarJogo(String nome, Genero genero, String ano, boolean ehGratuito) {
         Jogo jogo = new Jogo(idContador, nome, genero, ano, ehGratuito);
         jogos.put(idContador, jogo);
